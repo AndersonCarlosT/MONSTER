@@ -28,7 +28,6 @@ if archivo_empresa and archivo_regulador:
 
     nombre_archivo = st.text_input("📁 Nombre del archivo de salida (sin .xlsx)", "observacion_vad")
 
-    import io
     output = io.BytesIO()
     df.to_excel(output, index=False, engine='openpyxl')
     st.download_button(
@@ -36,3 +35,4 @@ if archivo_empresa and archivo_regulador:
         data=output.getvalue(),
         file_name=f"{nombre_archivo}.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
