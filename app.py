@@ -26,6 +26,12 @@ if archivo_empresa and archivo_regulador:
     st.dataframe(df.T, use_container_width=True)
 
     nombre_archivo = st.text_input("📁 Nombre del archivo de salida (sin .xlsx)", "observacion_vad")
-    if st.button("💾 Guardar en Excel"):
-        df.to_excel(f"{nombre_archivo}.xlsx", index=False)
-        st.success(f"Archivo guardado como {nombre_archivo}.xlsx")
+
+    import io
+    output = io.BytesIO()
+    df.to_excel(output, index=False, engine='openpyxl')
+    st.download_button(
+        label="💾 Descargar Excel",
+        data=output.getvalue(),
+        file_name=f"{nombre_archivo}.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
