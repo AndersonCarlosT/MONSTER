@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import io
 from extractor import extraer_texto_pdf, extraer_secciones
 
 st.set_page_config(page_title="🧠 Análisis de VAD - ML", layout="wide")
